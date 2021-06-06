@@ -1,8 +1,12 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { store } from '../modules/reduxMiddleware';
-import { editTimeline } from '../modules/timeline';
 import {
+  editTimeline,
+  deleteTimeline
+} from '../modules/timeline';
+import {
+  Button,
   Paper,
   InputBase,
   TableContainer,
@@ -34,6 +38,14 @@ export default function Timeline() {
     }
   }
 
+  const handleDelete = (targetLogId) => {
+    return (_) => {
+      store.dispatch(
+        deleteTimeline(targetLogId)
+      );
+    }
+  }
+
   return (
     <>
       { logs.length !== 0 &&
@@ -44,6 +56,7 @@ export default function Timeline() {
                 <TableCell>end_at</TableCell>
                 <TableCell align="left">memo</TableCell>
                 <TableCell align="left">type</TableCell>
+                <TableCell align="center">type</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -57,6 +70,11 @@ export default function Timeline() {
                   </TableCell>
                   <TableCell align="right">
                     <InputBase name="type" value={log.type} label="type" onChange={handleInputChange(log.id)} fullWidth/>
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button width="60%" onClick={handleDelete(log.id)}>
+                      Delete
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))}

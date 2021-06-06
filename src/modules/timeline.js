@@ -3,6 +3,7 @@ import moment from "moment";
 const CREATE_TIMELINE = 'CREATE_TIMELINE';
 const EDIT_TIMELINE = 'EDIT_TIMELINE';
 const CLEAR_TIMELINE = 'CLEAR_TIMELINE';
+const DELETE_TIMELINE = 'DELETE_TIMELINE';
 const EDIT_DOINGNOW = 'EDIT_DOINGNOW';
 
 const initialState = {
@@ -21,6 +22,13 @@ export const editTimeline = log => {
   return {
     type: EDIT_TIMELINE,
     payload: log
+  }
+}
+
+export const deleteTimeline = targetLogId => {
+  return {
+    type: DELETE_TIMELINE,
+    payload: targetLogId
   }
 }
 
@@ -45,10 +53,14 @@ export function timelineReducer (state = initialState, action) {
       return Object.assign({}, state, {logs: [...state.logs, payloadIncludingId]});
     case EDIT_TIMELINE:
       const rejectedTargetLogs = state.logs.filter(log => log.id !== action.payload.id);
-      const newLogs = [ ...rejectedTargetLogs, action.payload ].sort((a, b) => a.id - b.id);
-      return Object.assign({}, state, {logs: newLogs});
+      const editedNewLogs = [ ...rejectedTargetLogs, action.payload ].sort((a, b) => a.id - b.id);
+      return Object.assign({}, state, {logs: editedNewLogs});
     case CLEAR_TIMELINE:
       return Object.assign({}, state, {logs: action.payload});
+    case DELETE_TIMELINE:
+      const deletedTargetLogs = state.logs.filter(log => log.id !== action.payload);
+      const deletedNewLogs = deletedTargetLogs.map((log, i) => { return { ...log, id: i } });
+      return Object.assign({}, state, {logs: deletedNewLogs});
     case EDIT_DOINGNOW:
       return Object.assign({}, state, {doingNow: action.payload});
     default:

@@ -19,7 +19,7 @@ import {
 export default function DoingNow(){
 
   const doingNow = useSelector(state => state.timeline.doingNow);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState(moment().format('hh:mm:ss'));
 
   useEffect(()=>{
     setInterval(() => {
