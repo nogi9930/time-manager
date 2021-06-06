@@ -8,7 +8,7 @@ import {
 } from '../modules/timeHelper';
 import {
   createTimeline,
-  clearTimeline,
+  // clearTimeline,
   editDoingNow
 } from '../modules/timeline';
 import {
@@ -50,9 +50,9 @@ export default function DoingNow(){
     store.dispatch(createTimeline({ ...doingNow, end_at: currentTime }));
   }
 
-  const handleClear = (_) => {
-    store.dispatch(clearTimeline());
-  }
+  // const handleClear = (_) => {
+  //   store.dispatch(clearTimeline());
+  // }
 
   return (
     <Container maxWidth="sm" >
@@ -79,9 +79,9 @@ export default function DoingNow(){
                 <Button width="60%" onClick={handleSubmit}>
                   Submit
                 </Button>
-                <Button width="60%" onClick={handleClear}>
+                {/* <Button width="60%" onClick={handleClear}>
                   Clear
-                </Button>
+                </Button> */}
               </Box>
             </Box>
           </Box>
