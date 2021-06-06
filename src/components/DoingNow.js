@@ -3,6 +3,10 @@ import {useSelector} from 'react-redux';
 import moment from 'moment';
 import {store} from '../modules/reduxMiddleware';
 import {
+  FORMAT,
+  DISPRAY_FORMAT
+} from '../modules/timeHelper';
+import {
   createTimeline,
   clearTimeline,
   editDoingNow
@@ -19,11 +23,11 @@ import {
 export default function DoingNow(){
 
   const doingNow = useSelector(state => state.timeline.doingNow);
-  const [currentTime, setCurrentTime] = useState(moment().format('hh:mm:ss'));
+  const [currentTime, setCurrentTime] = useState(moment().format(FORMAT));
 
   useEffect(()=>{
     setInterval(() => {
-      setCurrentTime(_ => moment().format('hh:mm:ss'))
+      setCurrentTime(_ => moment().format(FORMAT))
     }, 1000);
   },[]);
 
@@ -62,7 +66,7 @@ export default function DoingNow(){
               <Box width="100%" textAlign="center" m={1}>
                 {/* Timer */}
                 <Typography variant="h3">
-                  {currentTime}
+                  {moment(currentTime).format(DISPRAY_FORMAT)}
                 </Typography>
               </Box>
               <Box width="60%" textAlign="center" m={1}>

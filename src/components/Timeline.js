@@ -1,4 +1,6 @@
 import React from 'react'
+import moment from 'moment';
+import { DISPRAY_FORMAT } from '../modules/timeHelper';
 import { useSelector } from 'react-redux'
 import { store } from '../modules/reduxMiddleware';
 import {
@@ -63,7 +65,7 @@ export default function Timeline() {
               {logs.map((log) => (
                 <TableRow key={log.id}>
                   <TableCell component="th" scope="row">
-                    {log.end_at}
+                    {moment(log.end_at).format(DISPRAY_FORMAT)}
                   </TableCell>
                   <TableCell align="right">
                     <InputBase name="memo" value={log.memo} label="memo" onChange={handleInputChange(log.id)} fullWidth/>
