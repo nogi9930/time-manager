@@ -21,3 +21,10 @@ src/
 npm install
 npm start
 ```
+
+# Environment
+
+|software|version|
+| --- | --- |
+|Node.js|14.16.0|
+|npm|6.14.11|
