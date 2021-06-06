@@ -4,7 +4,7 @@ import { store } from '../modules/reduxMiddleware';
 import { editTimeline } from '../modules/timeline';
 import {
   Paper,
-  TextField,
+  InputBase,
   TableContainer,
   Table,
   TableHead,
@@ -42,8 +42,8 @@ export default function Timeline() {
             <TableHead>
               <TableRow>
                 <TableCell>end_at</TableCell>
-                <TableCell align="right">memo</TableCell>
-                <TableCell align="right">type</TableCell>
+                <TableCell align="left">memo</TableCell>
+                <TableCell align="left">type</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -53,10 +53,10 @@ export default function Timeline() {
                     {log.end_at}
                   </TableCell>
                   <TableCell align="right">
-                    <TextField name="memo" value={log.memo} label="memo" onChange={handleInputChange(log.id)} fullWidth/>
+                    <InputBase name="memo" value={log.memo} label="memo" onChange={handleInputChange(log.id)} fullWidth/>
                   </TableCell>
                   <TableCell align="right">
-                    <TextField name="type" value={log.type} label="type" onChange={handleInputChange(log.id)} fullWidth/>
+                    <InputBase name="type" value={log.type} label="type" onChange={handleInputChange(log.id)} fullWidth/>
                   </TableCell>
                 </TableRow>
               ))}
