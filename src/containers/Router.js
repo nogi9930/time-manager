@@ -10,7 +10,7 @@ export default function Router() {
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
-          <Route exact path='/' component={Home}/>
+          <Route exact path='/time-manager' component={Home}/>
         </Provider>
       </BrowserRouter>
     </div>
